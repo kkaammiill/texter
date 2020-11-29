@@ -1,1 +1,1 @@
-web: gunicorn texter.wsgi
+web: sh -c 'cd ./src' && gunicorn texter.wsgi
