@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+  texter-app:
+    container_name: texter-app
+    image: texter:dev
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - texter-db
+    networks:
+      - texter-network
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - ./src:/src
+    environment:
+      DEBUG: 'True'
+      DJANGO_SECRET_KEY: texter
+      EDITOR_TOKENS: TEXTER,ABC
+      DB_NAME: postgres
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_HOST: texter-db
+      DB_PORT: 5432
+      DJANGO_SETTINGS_MODULE: texter.settings
+      PYTHONUNBUFFERED: x
+      PYTHONDONTWRITEBYTECODE: x
+
+  texter-db:
+    container_name: texter-db
+    image: postgres:12
+    networks:
+      - texter-network
+    volumes:
+      -  texter-db-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+
+
+networks:
+  texter-network:
+    name: texter-network
+
+volumes:
+  texter-db-data:
