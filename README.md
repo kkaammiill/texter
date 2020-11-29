@@ -27,6 +27,7 @@ Additionally local `src` directory is mounted to `texter-app` container. In resu
 | `DB_PASSWORD` | password of a user to be user on a postgres server | `postgres` |
 | `DB_HOST` | host of a postgres server | `texter-db` |
 | `DB_POST` | port of a postgres service | `5432` |
+| `DJANGO_SECRET_KEY` | standard django setting | `anything` |
 
 ## endpoints and usage
 
