@@ -113,3 +113,11 @@ curl -X GET \
 
 {"detail":"Not found."}
 ```
+
+### running tests
+assuming you will use docker
+```
+docker-compose up
+docker exec -it texter-app bash
+python manage.py test
+```
